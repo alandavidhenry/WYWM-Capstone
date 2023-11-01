@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wywm-capstone';
+
+  isOpen: boolean = false;
+
+  onIsOpenChange(isOpen: boolean) {
+    this.isOpen = isOpen;
+  }
 }
