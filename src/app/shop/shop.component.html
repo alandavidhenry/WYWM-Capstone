@@ -28,40 +28,61 @@
     <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
         <!-- Shirts Card 1 -->
-        <div class="border border-gray-300 rounded-lg">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/creatorShirt.png" alt="" />
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
+
+            <div class="cursor-pointer" routerLink="/product">
+
+                <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                    <img class="p-4" src="../../assets/images/creatorShirt.png" alt="" />
+                </div>
+
+                <div class="p-6">
+                    <h3 class="text-grey-900 mb-2">Creator Shirt</h3>
+                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
+                    <p class="text-grey-900 text-sm py-1">Change</p>
+                    <!-- <div class="my-2">
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#creator</span>
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#shirt</span>  
+                    </div> -->
+                </div>
+
+                <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6">
+                    Add to basket
+                </button>
+
             </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Creator Shirt</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
-                <p class="text-grey-900 text-sm py-1">Change</p>
-                <!-- <div class="my-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#creator</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#shirt</span>  
-                </div> -->
-            </div>
+            
         </div>
 
         <!-- Shirts Card 2 -->
         <div class="border border-gray-300 rounded-lg">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/doerShirt.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Doer Shirt</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Worker</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Structured</p>
-                <p class="text-grey-900 text-sm py-1">Process</p>
+
+            <div class="cursor-pointer" routerLink="/product">
+
+                <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                    <img class="p-4" src="../../assets/images/doerShirt.png" alt="" />
+                </div>
+
+                <div class="p-6">
+                    <h3 class="text-grey-900 mb-2">Doer Shirt</h3>
+                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Worker</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Structured</p>
+                    <p class="text-grey-900 text-sm py-1">Process</p>
+                </div>
 
             </div>
+
+            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6">
+                Add to basket
+            </button>
+            
         </div>
 
         <!-- Shirts Card 3 -->
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 <img class="p-4" src="../../assets/images/translatorShirt.png" alt="" />
             </div>
@@ -75,7 +96,7 @@
         </div>
  
         <!-- Shirts Card 4 -->
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 <img class="p-4" src="../../assets/images/beCuriousShirt.png" alt="" />
             </div>
@@ -89,7 +110,7 @@
         </div>
 
         <!-- Shirts Card 5 -->
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 <img class="p-4" src="../../assets/images/proShirt.png" alt="" />
             </div>
@@ -99,6 +120,7 @@
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Pro</p>
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Pro</p>
                 <p class="text-grey-900 text-sm py-1">Pro</p>
+
             </div>
         </div>
     </div>
@@ -112,7 +134,7 @@
     <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
         <!-- Books Card 1 -->
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 <img class="p-4" src="../../assets/images/wywmBook.png" alt="" />
             </div>
@@ -122,15 +144,12 @@
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
                 <p class="text-grey-900 text-sm py-1">Book</p>
-                <!-- <div class="my-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#creator</span>
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#shirt</span>  
-                </div> -->
+
             </div>
         </div>
 
         <!-- Books Card 2 -->
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
             <div class="relative overflow-hidden bg-cover bg-no-repeat">
                 <img class="p-4" src="../../assets/images/beCuriousBook.png" alt="" />
             </div>
@@ -140,7 +159,6 @@
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
                 <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
                 <p class="text-grey-900 text-sm py-1">Book</p>
-
             </div>
         </div>
     </div>

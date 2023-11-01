@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/wywm-capstone",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
