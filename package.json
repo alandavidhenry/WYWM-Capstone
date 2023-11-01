@@ -1,6 +1,7 @@
 {
   "name": "wywm-capstone",
   "version": "0.0.0",
+  "description": "Frontend Angular app for WYWM Capstone project",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
