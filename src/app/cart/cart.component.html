@@ -1,8 +1,41 @@
 <div class="flex flex-col max-w-[16rem] md:max-w-xs lg:max-w-sm h-screen px-8 text-gray-900 border border-t-0 bg-gradient-to-l from-white to-white/70 z-40 backdrop-blur-sm">
     <div>
-        <h2 class="mt-20">CART</h2>
+        <h2 class="mt-20">Shopping cart</h2>
     </div>
-    <div>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime voluptatem fuga eveniet sunt cum quo illum, similique blanditiis tenetur eum, ad, eos placeat quisquam consequatur ipsam neque labore esse quidem!</p>
+    
+    <div class="my-4" *ngIf="(!products.length)"> <!-- Only display this div if 'products' array is empty -->
+        No Items... Please add items to your cart.
     </div>
+
+    <div class="border border-red-500 text-sm" *ngFor="let product of products; let i = index">
+
+        <!-- <div class="">
+            <img [src]="product.image" width="60px" height="60px" [alt]="product.name">
+        </div> -->
+        
+        <div class="flex flex-row font-medium text-lg">
+           <p>{{ product.name }}</p> 
+           <p>{{ product.quantity * product.price | currency : 'GBP' : 'symbol' : '1.0-0' }}</p>
+        </div>
+        
+        <div class="flex flex-row font-normal text-base">
+            <p>{{ product.price }}</p>
+            <input type="number">
+        </div>
+        <!-- <input 
+            class=""  
+            type="number" 
+            min="1" 
+            value="1" 
+            name="quanty" 
+            [(ngModel)]="product.quantity" 
+            [ngModelOptions]="{standalone: true}"
+            (change)="qtyChange(product)"
+        > -->
+        
+        <div>
+            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-1 py-1" (click)="removeFromCart(product)">X</button>
+        </div>
+    </div>
+
 </div>

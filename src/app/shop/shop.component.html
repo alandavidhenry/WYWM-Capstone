@@ -27,18 +27,17 @@
 
     <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Shirts Card 1 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-
-            <div class="cursor-pointer" routerLink="/product">
+        <!-- Shirts Card -->
+        <div class="border border-gray-300 rounded-lg cursor-pointer" *ngFor="let shirt of productList.shirts">
+            <div class="cursor-pointer" [routerLink]="['/product', shirt.id]">
 
                 <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                    <img class="p-4" src="../../assets/images/creatorShirt.png" alt="" />
+                    <img class="p-4" src="../../assets/{{shirt.image}}" alt="" />
                 </div>
 
                 <div class="p-6">
-                    <h3 class="text-grey-900 mb-2">Creator Shirt</h3>
-                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
+                    <h4 class="text-grey-900 mb-2">{{ shirt.name }}</h4>
+                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">{{ shirt.price | currency : 'GBP' : 'symbol' : '1.0-0' }}</p>
                     <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
                     <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
                     <p class="text-grey-900 text-sm py-1">Change</p>
@@ -48,81 +47,13 @@
                     </div> -->
                 </div>
 
-                <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6">
-                    Add to basket
-                </button>
-
-            </div>
-            
-        </div>
-
-        <!-- Shirts Card 2 -->
-        <div class="border border-gray-300 rounded-lg">
-
-            <div class="cursor-pointer" routerLink="/product">
-
-                <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                    <img class="p-4" src="../../assets/images/doerShirt.png" alt="" />
-                </div>
-
-                <div class="p-6">
-                    <h3 class="text-grey-900 mb-2">Doer Shirt</h3>
-                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
-                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Worker</p>
-                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Structured</p>
-                    <p class="text-grey-900 text-sm py-1">Process</p>
-                </div>
-
             </div>
 
-            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6">
-                Add to basket
+            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(shirt)">
+                Add to cart
             </button>
-            
         </div>
 
-        <!-- Shirts Card 3 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/translatorShirt.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Translator Shirt</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£20</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Project</p>
-                <p class="text-grey-900 text-sm py-1">Delegate</p>
-            </div>
-        </div>
- 
-        <!-- Shirts Card 4 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/beCuriousShirt.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Be Curious Shirt</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£50</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Curious</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Curious</p>
-                <p class="text-grey-900 text-sm py-1">Curious</p>
-            </div>
-        </div>
-
-        <!-- Shirts Card 5 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/proShirt.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Pro Shirt</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£50</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Pro</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Pro</p>
-                <p class="text-grey-900 text-sm py-1">Pro</p>
-
-            </div>
-        </div>
     </div>
 </div>
 
@@ -133,33 +64,28 @@
 
     <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Books Card 1 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/wywmBook.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">WYWM Book</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£10</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
-                <p class="text-grey-900 text-sm py-1">Book</p>
+        <!-- Books Card -->
+        <div class="border border-gray-300 rounded-lg cursor-pointer" *ngFor="let book of productList.books">
+            <div class="cursor-pointer" routerLink="/product">
+
+                <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                    <img class="p-4" src="../../assets/{{book.image}}" alt="" />
+                </div>
+
+                <div class="p-6">
+                    <h4 class="text-grey-900 mb-2">{{ book.name }}</h4>
+                    <p class="text-grey-900 text-lg border-b border-gray-200 py-2">{{ book.price | currency : 'GBP' : 'symbol' : '1.0-0' }}</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
+                    <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
+                    <p class="text-grey-900 text-sm py-1">Change</p>
+                </div>
 
             </div>
+
+            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(book)">
+                Add to cart
+            </button>
         </div>
 
-        <!-- Books Card 2 -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" routerLink="/product">
-            <div class="relative overflow-hidden bg-cover bg-no-repeat">
-                <img class="p-4" src="../../assets/images/beCuriousBook.png" alt="" />
-            </div>
-            <div class="p-6">
-                <h3 class="text-grey-900 mb-2">Be Curious! Book</h3>
-                <p class="text-grey-900 text-lg border-b border-gray-200 py-2">£10</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
-                <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Book</p>
-                <p class="text-grey-900 text-sm py-1">Book</p>
-            </div>
-        </div>
     </div>
 </div>

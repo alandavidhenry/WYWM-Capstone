@@ -6,7 +6,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: ShopComponent },
-  { path: 'product', component: ProductComponent },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: '', pathMatch: 'full', redirectTo: '' },
 ];
