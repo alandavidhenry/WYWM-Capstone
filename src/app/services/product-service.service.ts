@@ -51,7 +51,7 @@ export class ProductService {
   // Update product quantity and save in local storage
   updateQuantity(product: any) {
     this.saveCart();
-  };
+  }
 
   // Remove a product from the cart
   removeProduct(product: any) {
@@ -60,6 +60,17 @@ export class ProductService {
       this.products.splice(index, 1);
       this.saveCart();
     }
-  };
+  }
+
+  // Load cart from local storage (or return an empty array)
+  loadCart() {
+    this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
+  }
+
+  // Load subTotal from local storage (or return 0)
+  loadSubTotal() {
+    this.subTotal = JSON.parse(localStorage.getItem('subTotal') as any);
+    return this.subTotal;
+  }
 
 }
