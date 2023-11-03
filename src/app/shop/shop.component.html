@@ -1,34 +1,12 @@
-<!-- Latest Arrivals Section -->
-<div class="flex flex-col items-center max-w-5xl mx-auto">
-    <h1 class="mt-10 text-center">Say Hello To Our<br>Latest Arrivals</h1>
-
-    <div>
-        <img src="../../assets/images/shirt_hero.png" class="my-12" alt="">
-    </div>
-
-    <button class="transition duration-150 ease-in-out text-gray-900 hover:text-gray-100 bg-transparent hover:bg-gray-400 font-small md:font-medium border hover:border-gray-400 border-gray-900 py-1 md:py-2 px-4 md:px-6 mb-8 rounded">
-        <a href="#shop_shirts">Shop now |</a>   
-    </button>
-
-</div>
-
-<!-- Our Products Section -->
-<div id="our_products" class="flex flex-col items-center max-w-6xl mx-auto bg-gray-900 font-light text-gray-100 px-8 md:px-24 py-8 md:py-16">
-    <h2 class="mb-4 md:mb-10">Our Products</h2>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum quo voluptatibus iusto pariatur dicta harum nostrum maiores et, labore in reiciendis distinctio. Quisquam qui adipisci eaque labore officia omnis consequuntur?
-    Autem modi porro explicabo consectetur. Non soluta iusto tenetur facere quae, voluptas fugiat dolorum sequi voluptate ipsa nulla hic amet? Animi corrupti tempora, sunt possimus quisquam dignissimos esse natus reprehenderit.
-    Quos iusto impedit in molestias quidem architecto non nostrum dolores laborum dolorem, accusamus veniam odit, tempore necessitatibus debitis voluptate officiis quam odio nisi nulla ratione! Consectetur quos eveniet aspernatur debitis!</p>
-</div>
-
 <!-- Shop Shirts Section -->
-<div id="shop_shirts" class="flex flex-col flex-wrap max-w-5xl mx-auto px-8 md:px-24 py-8 md:py-10 items-center font-light text-gray-900">
+<div class="flex flex-col flex-wrap max-w-5xl mx-auto px-6 md:px-24 py-8 md:py-10 items-center font-light text-gray-900">
 
     <h2 class="mb-4 md:mb-10">Shop Shirts</h2>
 
-    <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-flow-row gap-4 md:gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
         <!-- Shirts Card -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" *ngFor="let shirt of productList.shirts">
+        <div class="border border-gray-300 rounded-lg cursor-pointer transition-transform hover:scale-105" *ngFor="let shirt of productList.shirts">
             <div class="cursor-pointer" [routerLink]="['/product', shirt.id]">
 
                 <div class="relative overflow-hidden bg-cover bg-no-repeat">
@@ -41,15 +19,11 @@
                     <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Ideas</p>
                     <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
                     <p class="text-grey-900 text-sm py-1">Change</p>
-                    <!-- <div class="my-2">
-                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#creator</span>
-                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2">#shirt</span>  
-                    </div> -->
                 </div>
 
             </div>
 
-            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(shirt)">
+            <button class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal hover:font-medium text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(shirt)">
                 Add to cart
             </button>
         </div>
@@ -58,14 +32,14 @@
 </div>
 
 <!-- Shop Books Section -->
-<div id="shop_books" class="flex flex-col flex-wrap max-w-5xl mx-auto px-8 md:px-24 py-8 md:py-10 items-center font-light text-gray-900">
+<div class="flex flex-col flex-wrap max-w-5xl mx-auto px-8 md:px-24 py-8 md:py-10 items-center font-light text-gray-900">
 
     <h2 class="mb-4 md:mb-10">Shop Books</h2>
 
     <div class="grid grid-flow-row gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
         <!-- Books Card -->
-        <div class="border border-gray-300 rounded-lg cursor-pointer" *ngFor="let book of productList.books">
+        <div class="border border-gray-300 rounded-lg cursor-pointer transition-transform hover:scale-105" *ngFor="let book of productList.books">
             <div class="cursor-pointer" routerLink="/product">
 
                 <div class="relative overflow-hidden bg-cover bg-no-repeat">
@@ -82,7 +56,7 @@
 
             </div>
 
-            <button class="bg-gray-800 text-gray-200 text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(book)">
+            <button class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal hover:font-medium text-sm md:text-base rounded px-3 py-2 ml-6 mb-6" (click)="addToCart(book)">
                 Add to cart
             </button>
         </div>

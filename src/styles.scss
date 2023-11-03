@@ -23,6 +23,11 @@
     }
   }
 
-  html {
-    scroll-behavior: smooth; /*Adds smooth scrolling instead of snapping to element*/
-  }
+html {
+  scroll-behavior: smooth; /*Adds smooth scrolling instead of snapping to element*/
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
