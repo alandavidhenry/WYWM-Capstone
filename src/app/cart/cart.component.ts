@@ -10,8 +10,8 @@ import { NotificationService } from '../services/notification.service';
 export class CartComponent implements OnInit {
 
   products: any[] = [];
-  tax: number = 0.2
-  delivery: number = 3;
+  tax: number = 0.1
+  delivery: number = 20;
 
   constructor(private ProductService: ProductService,
               private notifyService: NotificationService) {}

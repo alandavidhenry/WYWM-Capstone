@@ -84,8 +84,8 @@ export class CheckoutComponent implements OnInit {
     // Retrieve data from local storage
     const subTotal: number = JSON.parse(localStorage.getItem('subTotal') || '0');
 
-    const tax: number = 0.2;
-    const delivery: number = 3;
+    const tax: number = 0.1;
+    const delivery: number = 20;
 
 
     // Initialise emailjs
