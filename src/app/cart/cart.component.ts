@@ -32,6 +32,11 @@ export class CartComponent implements OnInit {
     this.notifyService.success('The ' + product.name + ' has been removed from your shopping cart');
   }
 
+  // Remove all products from the cart
+  removeAllProducts() {
+    this.ProductService.removeAllProducts();
+  }
+
   // Calculate cart total
   get subTotal() {
     return this.products.reduce(

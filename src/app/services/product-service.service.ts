@@ -62,6 +62,11 @@ export class ProductService {
     }
   }
 
+  // Remove all products from the cart
+  removeAllProducts() {
+    this.products.length = 0;
+  }
+
   // Load cart from local storage (or return an empty array)
   loadCart() {
     this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
