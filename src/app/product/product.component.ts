@@ -11,14 +11,13 @@ export class ProductComponent {
 
   product: any;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+  constructor(private route: ActivatedRoute, 
+              private productService: ProductService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const productId = params['id']; // Get the 'id' route parameter
       this.product = this.productService.getProductById(productId); // Get product by id using 'ProductService'.
     });
-    console.log('product',this.product);
-    console.log(this.productService.products);
   }
 }

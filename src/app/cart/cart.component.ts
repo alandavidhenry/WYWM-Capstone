@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../services/product-service.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,8 @@ export class CartComponent implements OnInit {
   tax: number = 0.2
   delivery: number = 3;
 
-  constructor(private ProductService: ProductService) {}
+  constructor(private ProductService: ProductService,
+              private notifyService: NotificationService) {}
 
   ngOnInit(): void {
     this.products = this.ProductService.getProduct();
@@ -27,6 +29,7 @@ export class CartComponent implements OnInit {
   removeFromCart(product: any) {
     this.ProductService.removeProduct(product);
     this.products = this.ProductService.getProduct();
+    this.notifyService.success('The ' + product.name + ' has been removed from your shopping cart');
   }
 
   // Calculate cart total
@@ -43,7 +46,6 @@ export class CartComponent implements OnInit {
   // Save subTotal to local storage
   saveSubTotal() {
     localStorage.setItem('subTotal', JSON.stringify(this.subTotal));
-    console.log(this.subTotal)
   }
 
 }
