@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductService } from '../services/product-service.service';
+import { ProductService } from '../services/product.service';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { NotificationService } from '../services/notification.service';
 import { SharedDataService } from '../services/shared-data.service';

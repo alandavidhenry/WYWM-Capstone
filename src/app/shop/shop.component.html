@@ -42,7 +42,7 @@
 
         <!-- Books Card -->
         <div class="border border-gray-300 rounded-lg cursor-pointer transition-transform hover:scale-105" *ngFor="let book of productList.books">
-            <div class="cursor-pointer" routerLink="/product">
+            <div class="cursor-pointer" [routerLink]="['/product', book.id]">
 
                 <div class="relative overflow-hidden bg-cover bg-no-repeat">
                     <img class="p-4" src="../../assets/{{book.image}}" alt="" />

@@ -8,6 +8,17 @@ import { Injectable } from '@angular/core';
 })
 export class SharedDataService {
 
+  // Products object
+  private productList: any = {};
+
+  setProductList(value: any) {
+    this.productList = value;
+  }
+
+  getProductList(): any {
+    return this.productList;
+  }
+
   // Products array
   private products: any[] = [];
 

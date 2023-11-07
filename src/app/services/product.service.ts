@@ -15,7 +15,7 @@ export class ProductService {
   // Empty array ready to have products added to it
   products: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Get all product data from JSON file
   getAllProducts() {
@@ -33,8 +33,10 @@ export class ProductService {
   }
 
   // Find product by id
-  getProductById(productId: number): any | undefined {
-    return this.products.find(product => product.id === product.id);
+  getProductById(shirtId: number): any | undefined {
+    const shirt = this.products.find(shirt => shirt.id === shirtId);
+    console.log('Found product:', shirt); // Check if the product is found
+    return shirt;
   }
 
   // Save 'products' array to local storage

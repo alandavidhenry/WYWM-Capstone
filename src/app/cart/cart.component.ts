@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from '../services/product-service.service';
+import { ProductService } from '../services/product.service';
 import { NotificationService } from '../services/notification.service';
 import { SharedDataService } from '../services/shared-data.service';
 

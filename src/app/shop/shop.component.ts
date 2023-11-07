@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../services/product-service.service';
+import { ProductService } from '../services/product.service';
 import { NotificationService } from '../services/notification.service';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,7 +14,8 @@ export class ShopComponent {
 
   // CONSTRUCTOR
   constructor(private productService: ProductService,
-              private notifyService: NotificationService) {}
+              private notifyService: NotificationService,
+              private sharedData: SharedDataService) {}
 
   // ON INIT
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class ShopComponent {
       },
       complete: () => {
         console.log("Request complete");
+        this.sharedData.setProductList(this.productList)
       }
     });
   }
