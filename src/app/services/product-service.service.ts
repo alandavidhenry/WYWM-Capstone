@@ -1,3 +1,6 @@
+// Service to load data from the JSON file 
+// and send this data to and from the shopping cart
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,9 +14,6 @@ export class ProductService {
 
   // Empty array ready to have products added to it
   products: any[] = [];
-
-  // Initialise subTotal variable
-  subTotal: any = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -42,6 +42,11 @@ export class ProductService {
     localStorage.setItem('cartItems', JSON.stringify(this.products));
   }
 
+  // Load cart from local storage (or return an empty array)
+    loadCart() {
+      this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
+    }
+
   // Add product to cart and save in local storage
   addToCart(addedProduct: any) {
     this.products.push(addedProduct);
@@ -66,16 +71,4 @@ export class ProductService {
   removeAllProducts() {
     this.products.length = 0;
   }
-
-  // Load cart from local storage (or return an empty array)
-  loadCart() {
-    this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
-  }
-
-  // Load subTotal from local storage (or return 0)
-  loadSubTotal() {
-    this.subTotal = JSON.parse(localStorage.getItem('subTotal') as any);
-    return this.subTotal;
-  }
-
 }

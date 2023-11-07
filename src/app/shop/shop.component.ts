@@ -9,13 +9,15 @@ import { NotificationService } from '../services/notification.service';
 })
 export class ShopComponent {
 
-  productList: any = {}; // Object
+  productList: any = {}; // (Object)
 
+  // CONSTRUCTOR
   constructor(private productService: ProductService,
               private notifyService: NotificationService) {}
 
-  // Subscribe to 'getAllProducts()' from 'ProductService' and add response to the 'productList' object.
+  // ON INIT
   ngOnInit(): void {
+    // Subscribe to 'getAllProducts()' from 'ProductService' and add response to the 'productList' object.
     this.productService.getAllProducts().subscribe({
       next: (res: any) => {
         console.log(res);
@@ -30,6 +32,7 @@ export class ShopComponent {
     });
   }
 
+  // Function to add products to the shopping card when the button is clicked
   addToCart(product: any) {
     if (!this.productService.productInCart(product)) {  // Check if the product is already in the shopping cart, if not, continue.
       product.quantity = 1;  // Set the product quantity to 1.

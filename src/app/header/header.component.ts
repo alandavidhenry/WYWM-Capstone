@@ -7,13 +7,4 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
 
-  isOpen: boolean = false;
-
-  @Output() isOpenChange = new EventEmitter<boolean>();
-
-  toggleOpen() {
-    this.isOpen = !this.isOpen;
-    this.isOpenChange.emit(this.isOpen);
-  }
-
 }

@@ -8,6 +8,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'new-user', component: NewUserComponent },
+  { path: 'order-confirmation', component: OrderConfirmationComponent },
   { path: '', pathMatch: 'full', redirectTo: '' },
 ];
 

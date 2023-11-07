@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProductService } from '../services/product-service.service';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { NotificationService } from '../services/notification.service';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,10 +13,17 @@ import { NotificationService } from '../services/notification.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  products: any[] = [];
-  tax: number = 0.2
-  delivery: number = 3;
-  subTotal: any = 0;
+  products!: any[];
+  tax!: number;
+  delivery!: number;
+  subTotal!: number;
+
+  // CONSTRUCTOR
+  constructor(private router: Router,
+    private ProductService: ProductService,
+    private fb: FormBuilder,
+    private notifyService: NotificationService,
+    private sharedData: SharedDataService ) {}
 
   // Form group
   checkoutForm: FormGroup = this.fb.group({
@@ -41,11 +50,6 @@ export class CheckoutComponent implements OnInit {
     }
     return '';
   }
-  
-  // Constructor
-  constructor(private ProductService: ProductService,
-              private fb: FormBuilder,
-              private notifyService: NotificationService) {}
 
   // Form group getters
   get firstName() { return this.checkoutForm.get('firstName')!; }
@@ -57,17 +61,22 @@ export class CheckoutComponent implements OnInit {
   get cardExpiry() { return this.checkoutForm.get('cardExpiry')!; }
   get cardCode() { return this.checkoutForm.get('cardCode')!; }
 
-  // NG On Init
+  // ON INIT
   ngOnInit(): void {
     this.ProductService.loadCart();
-    this.products = this.ProductService.getProduct();
-    this.subTotal = this.ProductService.loadSubTotal();
+    this.products = this.sharedData.getProducts();
+    this.subTotal = this.sharedData.getSubTotal();
+
+    // Set variables from Shared Data service
+    this.products = this.sharedData.getProducts();
+    this.tax = this.sharedData.getTax();
+    this.delivery = this.sharedData.getDelivery();
 
     // Form validation
     this.checkoutForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       address: ['', Validators.required],
       cardNumber: ['', Validators.required, Validators.pattern('\d{16}')],
@@ -80,13 +89,17 @@ export class CheckoutComponent implements OnInit {
    async send() {
     // Generate random order number
     let randomNumber = Math.floor(Math.random() * 10000);
+    // Set random order number in Shared Data service
+    this.sharedData.setRandomNumber(randomNumber);
+
+    // Set first name in Shared Data service
+    this.sharedData.setFirstName(this.checkoutForm.value.firstName);
+
+    // Set email in Shared Data service
+    this.sharedData.setEmail(this.checkoutForm.value.email);
 
     // Retrieve data from local storage
     const subTotal: number = JSON.parse(localStorage.getItem('subTotal') || '0');
-
-    const tax: number = 0.1;
-    const delivery: number = 20;
-
 
     // Initialise emailjs
     emailjs.init('OaStgUBaejbAxjFos');
@@ -120,11 +133,12 @@ export class CheckoutComponent implements OnInit {
       }).join(''),
       orderTotals: 
         `<p>Sub total: £${subTotal}</p>
-        <p>Tax: ${tax * 100}%</p>
-        <p>Delivery: £${delivery}</p>
-        <p><b>Total: £${subTotal * (tax + 1) + delivery}</b></p>`,
+        <p>Tax: ${this.tax * 100}%</p>
+        <p>Delivery: £${this.delivery}</p>
+        <p><b>Total: £${subTotal * (this.tax + 1) + this.delivery}</b></p>`,
     });
     this.notifyService.success('Your order has been sent');
     this.checkoutForm.reset();
+    this.router.navigate(['/order-confirmation']);
   }
 }

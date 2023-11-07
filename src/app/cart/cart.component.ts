@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../services/product-service.service';
 import { NotificationService } from '../services/notification.service';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,15 +10,26 @@ import { NotificationService } from '../services/notification.service';
 })
 export class CartComponent implements OnInit {
 
+  // VARIABLES
   products: any[] = [];
-  tax: number = 0.1
-  delivery: number = 20;
+  tax!: number;
+  delivery!: number;
 
+  // CONSTRUCTOR
   constructor(private ProductService: ProductService,
-              private notifyService: NotificationService) {}
+              private notifyService: NotificationService,
+              private sharedData: SharedDataService) {}
 
+  // ON INIT
   ngOnInit(): void {
     this.products = this.ProductService.getProduct();
+
+    // Set products array in Shared Data service
+    this.sharedData.setProducts(this.products);
+
+    // Set variables from Shared Data service
+    this.tax = this.sharedData.getTax();
+    this.delivery = this.sharedData.getDelivery();
   }
 
   // Updates local storage when quantity is changed
@@ -49,8 +61,13 @@ export class CartComponent implements OnInit {
   }
 
   // Save subTotal to local storage
+  // saveSubTotal() {
+  //   localStorage.setItem('subTotal', JSON.stringify(this.subTotal));
+  // }
+
+  // Save subTotal to Shared Data service
   saveSubTotal() {
-    localStorage.setItem('subTotal', JSON.stringify(this.subTotal));
+    this.sharedData.setSubTotal(this.subTotal);
   }
 
 }
