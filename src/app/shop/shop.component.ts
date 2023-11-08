@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { NotificationService } from '../services/notification.service';
-import { SharedDataService } from '../services/shared-data.service';
 import { Product } from '../models/product';
 
 @Component({
@@ -11,15 +10,12 @@ import { Product } from '../models/product';
 })
 export class ShopComponent implements OnInit {
 
-  productList: any = {}; // (Object)
-
   shirts: Product[] = [];
   books: Product[] = [];
 
   // CONSTRUCTOR
   constructor(private productService: ProductService,
-              private notifyService: NotificationService,
-              private sharedData: SharedDataService) {}
+              private notifyService: NotificationService) {}
 
   // ON INIT
   ngOnInit(): void {
@@ -35,7 +31,6 @@ export class ShopComponent implements OnInit {
       },
       complete: () => {
         console.log("Request complete");
-        this.sharedData.setProductList(this.productList)
       }
     });
     
@@ -50,7 +45,6 @@ export class ShopComponent implements OnInit {
       },
       complete: () => {
         console.log("Request complete");
-        this.sharedData.setProductList(this.productList)
       }
     });
   }

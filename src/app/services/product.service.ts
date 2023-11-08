@@ -3,7 +3,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { Product } from '../models/product';
 import data from '../../assets/data';
 
@@ -13,9 +13,6 @@ import data from '../../assets/data';
 export class ProductService {
 
   private data = data;
-
-  // URL data location
-  url: string = 'assets/shopItems.json';
 
   // Empty array ready to have products added to it
   products: any[] = [];
@@ -36,19 +33,14 @@ export class ProductService {
   // CONSTRUCTOR
   constructor(private http: HttpClient) {}
 
-  // Get all product data from JSON file
-  getAllProducts() {
-    return this.http.get(this.url);
-  }
-
   // Get all shirt data from JSON file
   getShirts(): Observable<Product[]> {
-    return of(this.data.products)
+    return of(this.data.shirts.map(shirt => ({ ...shirt, quantity: 0 })));
   }
 
   // Get all book data from JSON file
   getBooks(): Observable<Product[]> {
-    return of(this.data.books)
+    return of(this.data.books.map(book => ({ ...book, quantity: 0 })));
   }
 
   // Get all products saved in the 'products' array
@@ -61,11 +53,18 @@ export class ProductService {
     return this.products.findIndex((x: any) => x.id === product.id) > -1;
   }
 
-  // Find product by id
-  getProductById(shirtId: number): any | undefined {
-    const shirt = this.products.find(shirt => shirt.id === shirtId);
-    console.log('Found product:', shirt); // Check if the product is found
+  // Find shirt by id
+  getShirtById(shirtId: number): any | undefined {
+    const shirt = this.data.shirts.find(shirt => shirt.id === shirtId.toString());
+    console.log('Found shirt:', shirt); // Check if the product is found
     return shirt;
+  }
+
+  // Find book by id
+  getBookById(bookId: number): any | undefined {
+    const book = this.data.books.find(book => book.id === bookId.toString());
+    console.log('Found book:', book); // Check if the product is found
+    return book;
   }
 
   // Save 'products' array to local storage

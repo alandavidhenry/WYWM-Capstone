@@ -2,22 +2,12 @@
 // Each variable has a getter and setter
 
 import { Injectable } from '@angular/core';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedDataService {
-
-  // Products object
-  private productList: any = {};
-
-  setProductList(value: any) {
-    this.productList = value;
-  }
-
-  getProductList(): any {
-    return this.productList;
-  }
 
   // Products array
   private products: any[] = [];
@@ -28,6 +18,28 @@ export class SharedDataService {
 
   getProducts(): any[] {
     return this.products;
+  }
+
+  // Shirts array
+  private shirts: any[] = [];
+
+  setShirts(value: any[]) {
+    this.shirts = value;
+  }
+
+  getShirts(): any[] {
+    return this.shirts;
+  }
+
+  // Books array
+  private books: Product[] = [];
+
+  setBooks(value: Product[]) {
+    this.books = value;
+  }
+
+  getBooks(): Product[] {
+    return this.books;
   }
 
   // Random number for order number

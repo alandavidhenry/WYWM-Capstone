@@ -135,10 +135,11 @@ export class CheckoutComponent implements OnInit {
         `<p>Sub total: £${subTotal}</p>
         <p>Tax: ${this.tax * 100}%</p>
         <p>Delivery: £${this.delivery}</p>
-        <p><b>Total: £${subTotal * (this.tax + 1) + this.delivery}</b></p>`,
+        <p><b>Total: £${Math.floor(subTotal * (this.tax + 1) + this.delivery)}</b></p>`,
     });
     this.notifyService.success('Your order has been sent');
     this.checkoutForm.reset();
+    this.ProductService.removeAllProducts();
     this.router.navigate(['/order-confirmation']);
   }
 }
