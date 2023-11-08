@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "wywm-capstone"
+  },
+  "targets": {
+    "wywm-capstone": {
+      "hosting": {
+        "wywm-capstone": [
+          "wywm-capstone"
+        ]
+      }
+    }
   }
 }

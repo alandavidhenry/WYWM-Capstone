@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +22,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +46,9 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

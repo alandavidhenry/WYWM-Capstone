@@ -1,10 +1,17 @@
 {
-  "hosting": {
-    "public": "dist/wywm-capstone",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "public": "dist/wywm-capstone",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "wywm-capstone",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
 }

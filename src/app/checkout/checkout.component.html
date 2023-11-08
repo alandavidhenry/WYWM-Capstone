@@ -286,6 +286,7 @@
             [disabled]="checkoutForm.invalid" 
             value="Order now" 
             (click)="send()"
+            (click)="saveToFirestore()"
         >
     </form>
 </div>

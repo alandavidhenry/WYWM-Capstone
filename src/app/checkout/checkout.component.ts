@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { NotificationService } from '../services/notification.service';
 import { SharedDataService } from '../services/shared-data.service';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +24,8 @@ export class CheckoutComponent implements OnInit {
     private ProductService: ProductService,
     private fb: FormBuilder,
     private notifyService: NotificationService,
-    private sharedData: SharedDataService ) {}
+    private sharedData: SharedDataService,
+    private firebaseService: FirebaseService ) {}
 
   // Form group
   checkoutForm: FormGroup = this.fb.group({
@@ -79,14 +81,46 @@ export class CheckoutComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       address: ['', Validators.required],
-      cardNumber: ['', Validators.required, Validators.pattern('\d{16}')],
-      cardExpiry: ['', Validators.required, Validators.pattern('\d{2}/\d{2}')],
-      cardCode: ['', Validators.required, Validators.pattern('\d{3}')],
+      // cardNumber: ['', [Validators.required, Validators.pattern('\d{16}')]],
+      // cardExpiry: ['', [Validators.required, Validators.pattern('\d{2}/\d{2}')]],
+      // cardCode: ['', [Validators.required, Validators.pattern('\d{3}')]],
+      cardNumber: ['', [Validators.required]],
+      cardExpiry: ['', [Validators.required]],
+      cardCode: ['', [Validators.required]],
     });
   }
 
-   // Email.js
-   async send() {
+  // Save form data to Firestore database
+  saveToFirestore() {
+    const formData = {
+      firstName: this.checkoutForm.value.firstName,
+      lastName: this.checkoutForm.value.lastName,
+      email: this.checkoutForm.value.email,
+      phone: this.checkoutForm.value.phone,
+      address: this.checkoutForm.value.address,
+      cardNumber: this.checkoutForm.value.cardNumber,
+      cardExpiry: this.checkoutForm.value.cardExpiry,
+      cardCode: this.checkoutForm.value.cardCode,
+      products: this.products.map(product => ({
+        name: product.name,
+        quantity: product.quantity,
+        price: product.price,
+        itemSubTotal: product.quantity * product.price
+      })),
+      totalPrice: Math.floor(this.subTotal * (this.tax + 1) + this.delivery)
+    };
+
+    this.firebaseService.addData(formData, 'orders')
+      .then(() => {
+        console.log('Data added to Firestore');
+      })
+      .catch((error) => {
+        console.error('Error adding data to Firestore: ', error);
+      });
+  }
+
+  // Email.js
+  async send() {
     // Generate random order number
     let randomNumber = Math.floor(Math.random() * 10000);
     // Set random order number in Shared Data service
@@ -132,10 +166,10 @@ export class CheckoutComponent implements OnInit {
                 </table>`;
       }).join(''),
       orderTotals: 
-        `<p>Sub total: £${subTotal}</p>
+        `<p>Sub total: £${this.subTotal}</p>
         <p>Tax: ${this.tax * 100}%</p>
         <p>Delivery: £${this.delivery}</p>
-        <p><b>Total: £${Math.floor(subTotal * (this.tax + 1) + this.delivery)}</b></p>`,
+        <p><b>Total: £${Math.floor(this.subTotal * (this.tax + 1) + this.delivery)}</b></p>`,
     });
     this.notifyService.success('Your order has been sent');
     this.checkoutForm.reset();
