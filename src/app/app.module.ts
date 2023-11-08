@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -40,6 +41,7 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
     FormsModule, 
     ReactiveFormsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [],

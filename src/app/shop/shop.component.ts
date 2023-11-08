@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { NotificationService } from '../services/notification.service';
 import { SharedDataService } from '../services/shared-data.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent {
+export class ShopComponent implements OnInit {
 
   productList: any = {}; // (Object)
+
+  shirts: Product[] = [];
+  books: Product[] = [];
 
   // CONSTRUCTOR
   constructor(private productService: ProductService,
@@ -19,11 +23,27 @@ export class ShopComponent {
 
   // ON INIT
   ngOnInit(): void {
-    // Subscribe to 'getAllProducts()' from 'ProductService' and add response to the 'productList' object.
-    this.productService.getAllProducts().subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.productList = res;
+
+    // Subscribe to 'getShirts()' from 'ProductService' and add data to the 'shirts' array.
+    this.productService.getShirts().subscribe({
+      next: (data: Product[]) => {
+        console.log(data);
+        this.shirts = data;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log("Request complete");
+        this.sharedData.setProductList(this.productList)
+      }
+    });
+    
+    // Subscribe to 'getBooks()' from 'ProductService' and add data to the 'books' array.
+    this.productService.getBooks().subscribe({
+      next: (data: Product[]) => {
+        console.log(data);
+        this.books = data;
       },
       error: (error) => {
         console.error(error);
