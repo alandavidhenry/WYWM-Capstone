@@ -1,6 +1,12 @@
 <div class="max-w-5xl mx-auto px-8 md:px-12 py-4 md:py-6 items-center font-light text-gray-900">
 
-    <a routerLink="/shop" class="text-sm md:text-base mb-4 md:mb-8">< Back to shop</a>
+    <!-- Breadcrumb navigation -->
+    <p class="text-sm md:text-base mb-4 md:mb-8">
+        <a routerLink="/">Home</a>
+        >
+        <a routerLink="/shop">Shop</a>
+        > Product
+    </p>
 
     <div class="grid grid-flow-row gap-0 md:gap-8 grid-cols-1 md:grid-cols-2">
 
@@ -13,11 +19,20 @@
             <p class="text-grey-900 text-sm border-b border-gray-200 py-1">Solutions</p>
             <p class="text-grey-900 text-sm py-1">Change</p>
 
-            <button class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal 
-                hover:font-medium text-sm md:text-base rounded px-3 py-2 my-4 md:mt-6" (click)="addToCart()">
-                Add to cart
-            </button>
-
+            <div>
+                <button class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal 
+                    hover:font-medium text-sm md:text-base rounded px-3 py-2 my-3 md:mt-6" (click)="addToCart()">
+                    Add to cart
+                </button>  
+            </div>
+            
+            <div>
+                <button class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal 
+                    hover:font-medium text-sm md:text-base rounded px-3 py-2 my-2 md:mt-4" routerLink="/shop">
+                    < Back to shop
+                </button> 
+            </div>
+            
         </div>
 
         <div class="relative overflow-hidden bg-cover bg-no-repeat order-1 md:order-2">
