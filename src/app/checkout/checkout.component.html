@@ -287,6 +287,22 @@
             </div>
         </div>   
 
+        <div class="flex justify-end">
+            <div class="flex flex-col">
+                <a class="text-blue-500 underline cursor-pointer text-end mb-2" (click)="toggleModal()">View the terms and conditions</a>
+                <div class="flex">
+                    <input 
+                        type="checkbox" 
+                        name="accept" 
+                        id="accept" 
+                        class="me-3"
+                        formControlName="accept"
+                    >
+                    <label for="accept">Accept the terms and conditions</label>
+                </div>
+            </div>
+        </div>
+
         <div class="flex justify-between">
             <button type="button" class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal hover:font-medium text-sm md:text-base rounded px-3 py-2 my-6" routerLink="/cart">
                 < Back to cart
@@ -304,3 +320,37 @@
 
     </form>
 </div>
+
+<!-- MODAL -->
+<div *ngIf="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+  <div class="relative w-auto my-6 mx-auto max-w-6xl">
+    <!--content-->
+    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+      <!--header-->
+      <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+        <h3>
+          Terms and conditions
+        </h3>
+        <h3 (click)="toggleModal()" class="cursor-pointer hover:text-gray-400">
+            X
+        </h3>
+      </div>
+      <!--body-->
+      <div class="relative p-6 flex-auto">
+        <p class="my-4 leading-relaxed">
+          General Data Protection Regulation (GDPR)<br><br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magnam adipisci animi natus officia, odit voluptatem asperiores cupiditate error dicta ex, debitis reprehenderit quisquam exercitationem, impedit voluptatum ut quod temporibus?
+          Distinctio, corrupti. Iure temporibus ex laudantium explicabo adipisci vitae quaerat quidem minus aperiam odio vero, unde necessitatibus eveniet aliquid, deserunt, perferendis suscipit. Quam architecto rerum nisi excepturi vitae error autem.
+          Impedit qui odio similique obcaecati beatae sit sequi quidem placeat dolorum laborum libero dicta soluta quaerat consequuntur aliquam maiores, velit, dolorem iusto repellat ad eos, officia labore! Tempora, neque exercitationem?
+        </p>
+      </div>
+      <!--footer-->
+      <div class="flex items-center justify-end p-6 rounded-b">
+        <button type="button" class="bg-gray-800 text-gray-200 hover:bg-gray-300 hover:text-gray-700 transition font-normal hover:font-medium text-sm md:text-base rounded px-3 py-2 my-6" (click)="toggleModal()">
+            Close
+        </button> 
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showModal" class="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"></div>

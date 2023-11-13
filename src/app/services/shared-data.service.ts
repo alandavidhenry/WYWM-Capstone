@@ -50,7 +50,7 @@ export class SharedDataService {
   getRandomNumber(): number {
     return this.randomNumber;
   }
-  
+
   setTax(value: number): void {
     this.tax = value;
   }

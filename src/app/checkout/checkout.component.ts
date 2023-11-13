@@ -46,9 +46,16 @@ export class CheckoutComponent implements OnInit {
       cardNumber: ['', [Validators.required]],
       cardExpiry: ['', [Validators.required]],
       cardCode: ['', [Validators.required]],
+      accept: [false, [Validators.requiredTrue]]
     });
   }
   
+  showModal = false;
+
+  // Modal
+  toggleModal(): void {
+    this.showModal = !this.showModal;
+  }
 
   // Method to display error messages
   getErrorMessage(control: any, name: string, format: string) {
