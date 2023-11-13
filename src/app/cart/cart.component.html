@@ -1,12 +1,13 @@
 <div class="flex flex-col flex-wrap max-w-5xl mx-auto px-6 md:px-24 py-8 md:py-10 font-light text-gray-900">
 
     <!-- Breadcrumb navigation -->
-    <p class="text-sm md:text-base mb-4 md:mb-8">
-        <a routerLink="/">Home</a>
-        >
-        <a routerLink="/shop">Shop</a>
-        > Shopping Cart
-    </p>
+    <nav class="text-sm md:text-base mb-4 md:mb-8" aria-label="Breadcrumb">
+        <a class="text-blue-800 underline" routerLink="/">Home</a>
+        <span aria-hidden="true"> / </span>
+        <a class="text-blue-800 underline" routerLink="/shop">Shop</a>
+        <span aria-hidden="true"> / </span>
+        <span class="font-medium" aria-current="page">Shopping cart</span>
+    </nav>
 
     <h2 class="mb-4 md:mb-10">Shopping Cart</h2>
 
