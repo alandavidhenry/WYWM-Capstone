@@ -7,32 +7,38 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./new-user.component.scss']
 })
 export class NewUserComponent {
+  
+  newUserForm: FormGroup;
 
   // CONSTRUCTOR
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.newUserForm = this.createNewUserForm();
+  }
 
   // Form group
-  newUserForm: FormGroup = this.fb.group({
-    email: '',
-    confirmEmail: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
-    phone: '',
-    address: ''
-  });
+  private createNewUserForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phone: ['', Validators.required],
+      address: ['', Validators.required]
+    });
+  }
 
   // Method to display error messages
   getErrorMessage(control: any, name: string, format: string) {
     if (control.hasError('required')) {
-      return name + ' is required';
+      return `${name} is required`;
     }
     if (control.hasError('email')) {
       return 'Invalid email address';
     }
     if (control.hasError('pattern')) {
-      return 'Please enter in the format: ' + format;
+      return `Please enter in the format: ${format}`;
     }
     return '';
   }
@@ -47,25 +53,7 @@ export class NewUserComponent {
   get phone() { return this.newUserForm.get('phone')!; }
   get address() { return this.newUserForm.get('address')!; }
 
-  // ON INIT
-  ngOnInit(): void {
-
-    // Form validation
-    this.newUserForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      confirmEmail: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phone: ['', Validators.required],
-      address: ['', Validators.required]
-    });
-  }
-
-  send() {
+  send(): void {
     console.log('Not yet implemented')
   }
-
-
 }

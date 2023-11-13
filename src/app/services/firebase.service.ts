@@ -52,5 +52,4 @@ export class FirebaseService {
       throw err;
     });
   }
-
 }

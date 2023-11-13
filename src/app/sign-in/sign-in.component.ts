@@ -8,25 +8,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignInComponent {
 
-  // CONSTRUCTOR
-  constructor(private fb: FormBuilder) {}
+  signInForm: FormGroup;
 
-  // Form group
-  signInForm: FormGroup = this.fb.group({
-    email: '',
-    password: '',
-  });
+  // CONSTRUCTOR
+  constructor(private fb: FormBuilder) {
+    this.signInForm = this.createSignInForm();
+  }
+
+  // Form validation
+  private createSignInForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    });
+  }
 
   // Method to display error messages
   getErrorMessage(control: any, name: string, format: string) {
     if (control.hasError('required')) {
-      return name + ' is required';
+      return `${name} is required`;
     }
     if (control.hasError('email')) {
       return 'Invalid email address';
     }
     if (control.hasError('pattern')) {
-      return 'Please enter in the format: ' + format;
+      return `Please enter in the format: ${format}`;
     }
     return '';
   }
@@ -35,18 +41,7 @@ export class SignInComponent {
   get email() { return this.signInForm.get('email')!; }
   get password() { return this.signInForm.get('password')!; }
 
-  // ON INIT
-  ngOnInit(): void {
-
-    // Form validation
-    this.signInForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
-  }
-
-  send() {
+  send(): void {
     console.log('Not yet implemented')
   }
-
 }

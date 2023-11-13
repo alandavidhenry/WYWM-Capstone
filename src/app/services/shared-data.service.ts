@@ -9,10 +9,17 @@ import { Product } from '../models/product';
 })
 export class SharedDataService {
 
-  // Products array
   private products: any[] = [];
+  private shirts: any[] = [];
+  private books: Product[] = [];
+  private randomNumber: number = 0;
+  private tax: number = 0.1;
+  private delivery: number = 20;
+  private subTotal: number = 0;
+  private firstName: string = '';
+  private email: string = '';
 
-  setProducts(value: any[]) {
+  setProducts(value: any[]): void {
     this.products = value;
   }
 
@@ -20,10 +27,7 @@ export class SharedDataService {
     return this.products;
   }
 
-  // Shirts array
-  private shirts: any[] = [];
-
-  setShirts(value: any[]) {
+  setShirts(value: any[]): void {
     this.shirts = value;
   }
 
@@ -31,10 +35,7 @@ export class SharedDataService {
     return this.shirts;
   }
 
-  // Books array
-  private books: Product[] = [];
-
-  setBooks(value: Product[]) {
+  setBooks(value: Product[]): void {
     this.books = value;
   }
 
@@ -42,21 +43,15 @@ export class SharedDataService {
     return this.books;
   }
 
-  // Random number for order number
-  private randomNumber: number = 0;
-
-  setRandomNumber(value: number) {
+  setRandomNumber(value: number): void {
     this.randomNumber = value;
   }
 
   getRandomNumber(): number {
     return this.randomNumber;
   }
-
-  // Tax amount
-  private tax: number = 0.1;
-
-  setTax(value: number) {
+  
+  setTax(value: number): void {
     this.tax = value;
   }
 
@@ -64,10 +59,7 @@ export class SharedDataService {
     return this.tax;
   }
 
-  // Delivery amount
-  private delivery: number = 20;
-
-  setDelivery(value: number) {
+  setDelivery(value: number): void {
     this.delivery = value;
   }
 
@@ -75,10 +67,7 @@ export class SharedDataService {
     return this.delivery;
   }
 
-  // Subtotal
-  private subTotal: number = 0;
-
-  setSubTotal(value: number) {
+  setSubTotal(value: number): void {
     this.subTotal = value;
   }
 
@@ -86,10 +75,7 @@ export class SharedDataService {
     return this.subTotal;
   }
 
-  // Customer first name
-  private firstName: string = '';
-
-  setFirstName(value: string) {
+  setFirstName(value: string): void {
     this.firstName = value;
   }
 
@@ -97,15 +83,11 @@ export class SharedDataService {
     return this.firstName;
   }
 
-  // Customer email address
-  private email: string = '';
-
-  setEmail(value: string) {
+  setEmail(value: string): void {
     this.email = value;
   }
 
   getEmail(): string {
     return this.email;
   }
-
 }

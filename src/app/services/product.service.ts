@@ -15,7 +15,7 @@ export class ProductService {
   private data = data;
 
   // Empty array ready to have products added to it
-  products: any[] = [];
+  private products: Product[] = [];
 
   // Number of items in shopping cart
   cartCounter: number = 0;
@@ -49,32 +49,28 @@ export class ProductService {
   }
 
   // Check if product is already in cart by id
-  productInCart(product: any) {
-    return this.products.findIndex((x: any) => x.id === product.id) > -1;
+  productInCart(product: Product): boolean {
+    return this.products.some(x => x.id === product.id);
   }
 
   // Find shirt by id
   getShirtById(shirtId: number): any | undefined {
-    const shirt = this.data.shirts.find(shirt => shirt.id === shirtId.toString());
-    console.log('Found shirt:', shirt); // Check if the product is found
-    return shirt;
+    return this.data.shirts.find(shirt => shirt.id === shirtId.toString());
   }
 
   // Find book by id
   getBookById(bookId: number): any | undefined {
-    const book = this.data.books.find(book => book.id === bookId.toString());
-    console.log('Found book:', book); // Check if the product is found
-    return book;
+    return this.data.books.find(book => book.id === bookId.toString());
   }
 
   // Save 'products' array to local storage
-  saveCart() {
+  saveCart(): void {
     localStorage.setItem('cartItems', JSON.stringify(this.products));
     this.cartCounter = this.products.length;
   }
 
   // Load cart from local storage (or return an empty array)
-  loadCart() {
+  loadCart(): void {
     this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
   }
 
@@ -85,20 +81,20 @@ export class ProductService {
   }
 
   // Add product to cart and save in local storage
-  addToCart(addedProduct: any) {
+  addToCart(addedProduct: Product): void {
     this.products.push(addedProduct);
     this.saveCart();
     this.updateCartCounter();
   }
 
   // Update product quantity and save in local storage
-  updateQuantity(product: any) {
+  updateQuantity(product: Product): void {
     this.saveCart();
     this.updateCartCounter();
   }
 
   // Remove a product from the cart
-  removeProduct(product: any) {
+  removeProduct(product: Product): void {
     const index = this.products.findIndex((x: any) => x.id === product.id);
     if (index > -1) {
       this.products.splice(index, 1);
@@ -108,8 +104,9 @@ export class ProductService {
   }
 
   // Remove all products from the cart
-  removeAllProducts() {
-    this.products.length = 0;
+  removeAllProducts(): void {
+    this.products = [];
+    this.saveCart();
     this.updateCartCounter();
   }
 }

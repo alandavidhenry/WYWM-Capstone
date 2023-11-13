@@ -20,7 +20,12 @@ export class ShopComponent implements OnInit {
   // ON INIT
   ngOnInit(): void {
 
-    // Subscribe to 'getShirts()' from 'ProductService' and add data to the 'shirts' array.
+    this.loadShirts();
+    this.loadBooks();
+  }
+
+  // Subscribe to 'getShirts()' from 'ProductService' and add data to the 'shirts' array.
+  loadShirts(): void {
     this.productService.getShirts().subscribe({
       next: (data: Product[]) => {
         console.log(data);
@@ -33,8 +38,10 @@ export class ShopComponent implements OnInit {
         console.log("Request complete");
       }
     });
-    
-    // Subscribe to 'getBooks()' from 'ProductService' and add data to the 'books' array.
+  }
+  
+  // Subscribe to 'getBooks()' from 'ProductService' and add data to the 'books' array.
+  loadBooks(): void { 
     this.productService.getBooks().subscribe({
       next: (data: Product[]) => {
         console.log(data);
@@ -48,14 +55,14 @@ export class ShopComponent implements OnInit {
       }
     });
   }
+  
 
   // Function to add products to the shopping card when the button is clicked
-  addToCart(product: any) {
+  addToCart(product: Product): void {
     if (!this.productService.productInCart(product)) {  // Check if the product is already in the shopping cart, if not, continue.
       product.quantity = 1;  // Set the product quantity to 1.
       this.productService.addToCart(product); // Run 'addToCart()' in the 'ProductService' and add the product
-      this.notifyService.success('The ' + product.name + ' has been added to your shopping cart');
+      this.notifyService.success(`The ${product.name} has been added to your shopping cart`);
     }
   }
-
 }

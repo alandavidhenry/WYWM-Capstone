@@ -11,12 +11,6 @@ import { NotificationService } from '../services/notification.service';
 })
 export class ProductComponent implements OnInit {
 
-  shirt: any = {};
-  book: any = {};
-
-  shirts: Product[] = [];
-  books: Product[] = [];
-
   product: Product | undefined;
 
   // CONSTRUCTOR
@@ -29,18 +23,23 @@ export class ProductComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       const productId = +params['id']; // Get the 'id' route parameter as a number
-      const isShirt = this.route.snapshot.url[0].path === 'shirts';
-  
-      if (isShirt) {
-        this.product = this.productService.getShirtById(productId);
-      } else {
-        this.product = this.productService.getBookById(productId);
-      }
+      const category = this.route.snapshot.url[0].path;
+
+      this.loadProduct(category, productId);
     });
   }
 
+  // Load either shirts or books
+  loadProduct(category: string, productId: number): void {
+    if (category === 'shirts') {
+      this.product = this.productService.getShirtById(productId);
+    } else {
+      this.product = this.productService.getBookById(productId);
+    }
+  }
+
   // Function to add products to the shopping card when the button is clicked
-  addToCart() {
+  addToCart(): void {
     if (this.product && !this.productService.productInCart(this.product)) {
       this.product.quantity = 1;  // Set the product quantity to 1.
       this.productService.addToCart(this.product);
