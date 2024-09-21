@@ -21,12 +21,12 @@ I was tasked with creating an online shop selling merchandise for With You With 
 
 ### Built With
 
-[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[TypeScript](https://www.typescriptlang.org)
-[Angular](https://angular.dev)
-[TailwindCSS](https://tailwindcss.com)
-[Firebase](https://firebase.google.com)
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [TypeScript](https://www.typescriptlang.org)
+* [Angular](https://angular.dev)
+* [TailwindCSS](https://tailwindcss.com)
+* [Firebase](https://firebase.google.com)
 
 #### HTML
 
@@ -59,7 +59,7 @@ To get a local copy up and running follow these simple steps.
 
 * Node.js
 * npm
-* Angular CLI (npm install -g @angular/cli)
+* Angular CLI (`npm install -g @angular/cli`)
 
 ### Installation
 
